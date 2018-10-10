@@ -6,18 +6,21 @@ export default class Main extends Component {
   constructor() {
     super();
     this.state = {
-      students: []
+      students: [],
+      tests: []
     };
   }
 
-  // fetch data from db via axios after component mounts
-
   async componentDidMount() {
-    const { data } = await axios.get("/student");
+    const studentID = this.props.match.params.id;
+
+    const student = await axios.get("/student");
+    const test = await axios.get(`/test/${studentID}`);
     this.setState({
-      students: data
+      students: student.data,
+      tests: test.data
     });
-    console.log(this.state);
+    console.log(test.data);
   }
 
   // return "Hello again from Main"; //<- WORKS

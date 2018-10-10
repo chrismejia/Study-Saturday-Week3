@@ -30783,36 +30783,40 @@ var Main = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
 
     _this.state = {
-      students: []
+      students: [],
+      tests: []
     };
     return _this;
   }
-
-  // fetch data from db via axios after component mounts
 
   _createClass(Main, [{
     key: "componentDidMount",
     value: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var _ref2, data;
-
+        var studentID, student, test;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                studentID = this.props.match.params.id;
+                _context.next = 3;
                 return _axios2.default.get("/student");
 
-              case 2:
-                _ref2 = _context.sent;
-                data = _ref2.data;
-
-                this.setState({
-                  students: data
-                });
-                console.log(this.state);
+              case 3:
+                student = _context.sent;
+                _context.next = 6;
+                return _axios2.default.get("/test/" + studentID);
 
               case 6:
+                test = _context.sent;
+
+                this.setState({
+                  students: student.data,
+                  tests: test.data
+                });
+                console.log(test.data);
+
+              case 9:
               case "end":
                 return _context.stop();
             }
