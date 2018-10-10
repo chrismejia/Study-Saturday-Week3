@@ -84,3 +84,94 @@ Then we replace `<td>The table body</td>` with our mapping logic.
   ))}
 </tbody>
 ```
+
+### Creating `StudentList` component
+
+Time to create a stateless component that takes in props.
+
+1. import `React` and make `StudentList` function that takes in `props`.
+2. `export default StudentList` at the end of the file!
+3. Deconstructed the passed down props to pull `students` off it.
+4. `return` the code snippet of the map function with `tbody` above from `StudentList`
+
+New component setup complete.
+
+```jsx
+import React, { Component } from "react";
+
+const StudentList = props => {
+  const { students } = props;
+
+  return (
+    <tbody>
+      {students.map(studentObj => (
+        <tr key={studentObj.id}>
+          <td>{studentObj.fullName}</td>
+        </tr>
+      ))}
+    </tbody>
+  );
+};
+
+export default StudentList;
+```
+
+Now we just have to plug this component into `Main.js`. `import` the newly created `StudentList` and update the `render()` function in `Main` to look like this:
+
+```jsx
+  render() {
+    const { students } = this.state;
+
+    return (
+      <div>
+        <h1>Students</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Names</th>
+            </tr>
+          </thead>
+          <StudentList students={students} />
+        </table>
+      </div>
+    );
+  }
+```
+
+### Adding the tests column to the table
+
+Add another `<th>` under the one that's already there for `names` and set it to **Tests**.
+
+```jsx
+return (
+      <div>
+        <h1>Students</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Names</th>
+              <th>Tests</th>  <-- Right here
+            </tr>
+          </thead>
+          <StudentList students={students} />
+        </table>
+      </div>
+    );
+```
+
+After that, head to `StudentList` and add a `<td>` that contains `Details` on the line after the `<td>` where we mapped the student's `fullName`.
+
+```jsx
+return (
+    <tbody>
+      {students.map(studentObj => (
+        <tr key={studentObj.id}>
+          <td>{studentObj.fullName}</td>
+          <td>Details</td>     <-- Right here
+        </tr>
+      ))}
+    </tbody>
+  );
+```
+
+### Creating the `SingleStudent` component

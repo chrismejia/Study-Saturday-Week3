@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import StudentList from "./StudentList";
 
 export default class Main extends Component {
   constructor() {
@@ -16,6 +17,7 @@ export default class Main extends Component {
     this.setState({
       students: data
     });
+    console.log(this.state);
   }
 
   // return "Hello again from Main"; //<- WORKS
@@ -29,15 +31,10 @@ export default class Main extends Component {
           <thead>
             <tr>
               <th>Names</th>
+              <th>Tests</th>
             </tr>
           </thead>
-          <tbody>
-            {students.map(studentObj => (
-              <tr key={studentObj.id}>
-                <td>{studentObj.fullName}</td>
-              </tr>
-            ))}
-          </tbody>
+          <StudentList students={students} />
         </table>
       </div>
     );

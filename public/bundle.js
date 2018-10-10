@@ -30760,6 +30760,10 @@ var _axios = __webpack_require__(353);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _StudentList = __webpack_require__(372);
+
+var _StudentList2 = _interopRequireDefault(_StudentList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -30806,8 +30810,9 @@ var Main = function (_Component) {
                 this.setState({
                   students: data
                 });
+                console.log(this.state);
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -30851,24 +30856,15 @@ var Main = function (_Component) {
                 "th",
                 null,
                 "Names"
+              ),
+              _react2.default.createElement(
+                "th",
+                null,
+                "Tests"
               )
             )
           ),
-          _react2.default.createElement(
-            "tbody",
-            null,
-            students.map(function (studentObj) {
-              return _react2.default.createElement(
-                "tr",
-                { key: studentObj.id },
-                _react2.default.createElement(
-                  "td",
-                  null,
-                  studentObj.fullName
-                )
-              );
-            })
-          )
+          _react2.default.createElement(_StudentList2.default, { students: students })
         )
       );
     }
@@ -32447,6 +32443,51 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 372 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(331);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var StudentList = function StudentList(props) {
+  var students = props.students;
+
+
+  return _react2.default.createElement(
+    "tbody",
+    null,
+    students.map(function (studentObj) {
+      return _react2.default.createElement(
+        "tr",
+        { key: studentObj.id },
+        _react2.default.createElement(
+          "td",
+          null,
+          studentObj.fullName
+        ),
+        _react2.default.createElement(
+          "td",
+          null,
+          "Details"
+        )
+      );
+    })
+  );
+};
+
+exports.default = StudentList;
 
 /***/ })
 /******/ ]);
