@@ -15,7 +15,6 @@ export default class Main extends Component {
     const studentID = this.props.match.params.id;
 
     const student = await axios.get("/student");
-    const test = await axios.get(`/test/${studentID}`);
     this.setState({
       students: student.data,
       tests: test.data

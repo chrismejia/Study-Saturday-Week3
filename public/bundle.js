@@ -30793,7 +30793,7 @@ var Main = function (_Component) {
     key: "componentDidMount",
     value: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var studentID, student, test;
+        var studentID, student;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -30804,11 +30804,6 @@ var Main = function (_Component) {
 
               case 3:
                 student = _context.sent;
-                _context.next = 6;
-                return _axios2.default.get("/test/" + studentID);
-
-              case 6:
-                test = _context.sent;
 
                 this.setState({
                   students: student.data,
@@ -30816,7 +30811,7 @@ var Main = function (_Component) {
                 });
                 console.log(test.data);
 
-              case 9:
+              case 6:
               case "end":
                 return _context.stop();
             }
